@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/src/auth/components/custom_text_field.dart';
 
-//TELA DE LOGIN
+//TELA DE LOGIN #1
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -29,20 +30,20 @@ class SignInScreen extends StatelessWidget {
                   )
                 ),
 
-                child: Column(
+                child: const Column(
                   children: [
                     //email
-                    TextFormField(
-                      decoration: InputDecoration(
-                        isDense: true, //o campo de texto fica mais baixo
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                      ),
+                    CustomTextField(
+                      icon: Icons.email,
+                      label: "Email",
                     ),
 
                     //senha
-                    TextFormField(),
+                    CustomTextField(
+                      icon: Icons.lock,
+                      label: "Senha",
+                      isSecret: true,
+                    ),
 
                   ],
                 ),
