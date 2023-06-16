@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 //CAMPO DE TEXTO CUSTOMIZADO #2
 
 class CustomTextField extends StatefulWidget {
   final IconData icon;
   final String label;
-
   //variavel para apresentar o botao de visibilidade
   // do suffixIcon no campo de senha
   final bool isSecret;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextField({
     Key? key,
     required this.icon,
     required this.label,
     this.isSecret = false,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        inputFormatters: widget.inputFormatters,
         obscureText: isObscure,
         decoration: InputDecoration(
           prefixIcon: Icon(widget.icon),
