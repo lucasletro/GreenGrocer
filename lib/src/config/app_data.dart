@@ -3,6 +3,8 @@
 
 import 'package:greengrocer/src/models/item_model.dart';
 
+import '../models/cart_item_model.dart';
+
 ItemModel apple = ItemModel(
   description:
       'A melhor maçã da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
@@ -67,10 +69,29 @@ List<ItemModel> items = [
   papaya,
 ];
 
+//lista de categorias
 List<String> categories = [
   "Frutas",
   "Grãos",
   "Verduras",
   "Temperos",
   "Cereais",
+];
+
+//lista de produtos do carrinho
+//vamos usar esta lista para
+//apresentar os produtos na tela do carrinho.
+List<CartItemModel> cartItems = [
+  CartItemModel(
+    item: apple,
+    quantity: 1,
+  ),
+  CartItemModel(
+    item: mango,
+    quantity: 1,
+  ),
+  CartItemModel(
+    item: guava,
+    quantity: 3,
+  ),
 ];
