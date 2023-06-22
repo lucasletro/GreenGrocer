@@ -6,10 +6,16 @@ import 'package:flutter/services.dart';
 class CustomTextField extends StatefulWidget {
   final IconData icon;
   final String label;
+
   //variavel para apresentar o botao de visibilidade
   // do suffixIcon no campo de senha
   final bool isSecret;
+
   final List<TextInputFormatter>? inputFormatters;
+
+  //profile_tab
+  final String? initialValue;
+  final bool readOnly;
 
   const CustomTextField({
     Key? key,
@@ -17,6 +23,8 @@ class CustomTextField extends StatefulWidget {
     required this.label,
     this.isSecret = false,
     this.inputFormatters,
+    this.initialValue,
+    this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -40,6 +48,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        readOnly: widget.readOnly, //campo apenas de leitura na profile_tab
+        initialValue: widget.initialValue, //valor inicial do campo de texto
         inputFormatters: widget.inputFormatters,
         obscureText: isObscure,
         decoration: InputDecoration(
