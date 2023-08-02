@@ -5,6 +5,7 @@ import 'package:greengrocer/src/models/item_model.dart';
 import 'package:greengrocer/src/models/user_model.dart';
 
 import '../models/cart_item_model.dart';
+import '../models/order_model.dart';
 
 ItemModel apple = ItemModel(
   description:
@@ -97,6 +98,7 @@ List<CartItemModel> cartItems = [
   ),
 ];
 
+//usuario - perfil
 UserModel user = UserModel(
   phone: "99 9 9999-9999",
   cpf: "999.999.999-99",
@@ -104,3 +106,43 @@ UserModel user = UserModel(
   name: "Lucas",
   password: "senha",
 );
+
+//lista de pedidos que vai ser apresentada na orders_tile
+List<OrderModel> orders = [
+  //PEDIDO 01
+  OrderModel(
+    id: 'asd6a54da6s2d1',
+    createdDateTime: DateTime.parse("2024-07-07 10:00:10.458"),
+    overdueDateTime: DateTime.parse("2024-07-07 11:00:10.458"),
+    status: "pending_payment",
+    copyAndPast: 'q1w2e3r4t5y6',
+    total: 11,
+    items: [
+      //pedidos
+      CartItemModel(
+        item: apple,
+        quantity: 2,
+      ),
+      CartItemModel(
+        item: mango,
+        quantity: 2,
+      ),
+    ],
+  ),
+
+  //PEDIDO 02
+  OrderModel(
+    copyAndPast: 'q1w2e3r4t5y6',
+    createdDateTime: DateTime.parse('2024-06-08 10:00:10.458'),
+    overdueDateTime: DateTime.parse('2024-06-08 11:00:10.458'),
+    id: 'a65s4d6a2s1d6a5s',
+    status: 'delivered',
+    total: 11.5,
+    items: [
+      CartItemModel(
+        item: guava,
+        quantity: 1,
+      ),
+    ],
+  ),
+];
