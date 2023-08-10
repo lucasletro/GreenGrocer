@@ -5,16 +5,38 @@ import 'package:greengrocer/src/services/utils_services.dart';
 
 //TILE DOS PRODUTOS QUE VAI SER CHAMADO NO GRID VIEW NA HOME_TAB
 
-class ItemTile extends StatelessWidget {
-  ItemTile({
+class ItemTile extends StatefulWidget {
+  const ItemTile({
     Key? key,
     required this.item,
   }) : super(key: key);
 
-  final UtilsServices utilsServices = UtilsServices();
   //dentro de itemModel temos todos os dados do produto
   //como nome, imagem, preço etc..
   final ItemModel item;
+
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
+
+  //-----------
+  final UtilsServices utilsServices = UtilsServices();
+  //icone do botão de add no carrinho
+  IconData tileIcon = Icons.add_shopping_cart_outlined;
+
+  //função para mudar o icone do botão do carrinho ao clicar.
+  Future<void>switchIcon() async {
+
+    setState(() =>tileIcon = Icons.check);
+
+    //delay de 1,5 segundos ao alterar o icone
+    await Future.delayed(const Duration(milliseconds: 1500));
+
+    setState(() =>tileIcon = Icons.add_shopping_cart_outlined);
+  }
+  //------------
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +49,7 @@ class ItemTile extends StatelessWidget {
           onTap: (){
             Navigator.of(context).push(
               MaterialPageRoute(builder: (c){
-                return ProductScreen(item: item,);
+                return ProductScreen(item: widget.item,);
               })
             );
           },
@@ -49,14 +71,14 @@ class ItemTile extends StatelessWidget {
                   Expanded(
                       child: Hero( //animaçao ao abri e fechar a imagem.
                         //tag: modo q vamos reconhecer esta imagem ao abrir em outro local
-                        tag: item.imgUrl,
-                          child: Image.asset(item.imgUrl),
+                        tag: widget.item.imgUrl,
+                          child: Image.asset(widget.item.imgUrl),
                       ),
                   ),
 
                   //NOME
                   Text(
-                    item.itemName,
+                    widget.item.itemName,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -67,7 +89,7 @@ class ItemTile extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        utilsServices.priceToCurrency(item.price),
+                        utilsServices.priceToCurrency(widget.item.price),
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -75,7 +97,7 @@ class ItemTile extends StatelessWidget {
                       ),
 
                       Text(
-                          "/${item.unit}",
+                          "/${widget.item.unit}",
                         style: TextStyle(
                           color: Colors.grey.shade500,
                           fontWeight: FontWeight.bold,
@@ -95,7 +117,9 @@ class ItemTile extends StatelessWidget {
           top: 4,
           right: 4,
           child: GestureDetector(
-            onTap: (){},
+            onTap: (){
+              switchIcon();
+            },
             child: Container(
               height: 40,
               width: 35,
@@ -106,8 +130,8 @@ class ItemTile extends StatelessWidget {
                   topRight: Radius.circular(20),
                 )
               ),
-              child: const Icon(
-                Icons.add_shopping_cart_outlined,
+              child: Icon(
+                tileIcon, //icon
                 color: Colors.white,
                 size: 20,
               ),
