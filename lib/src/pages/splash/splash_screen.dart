@@ -24,27 +24,35 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     //monitora as mudanças no estado de autenticação
     // do usuário usando Firebase Authentication.
-    streamSubscription =
-        FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        //caso nao tiver logado, vou para tela de login
-        Future.delayed(
-          const Duration(seconds: 2),
-          () {
-            Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (c) {
-              return const SignInScreen();
-            }));
-          },
-        );
-      } else {
-        //se ja tiver logado ja vou para tela base
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const BaseScreen()),
-        );
-      }
-    });
+    streamSubscription = FirebaseAuth.instance.authStateChanges().listen(
+      (User? user) {
+        if (user == null) {
+          //caso nao tiver logado, vou para tela de login
+          Future.delayed(
+            const Duration(seconds: 2),
+            () {
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (c) {
+                return const SignInScreen();
+              }));
+            },
+          );
+        } else {
+          //se ja tiver logado ja vou para tela base
+          Future.delayed(
+            const Duration(seconds: 2),
+            () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BaseScreen(),
+                ),
+              );
+            },
+          );
+        }
+      },
+    );
   }
 
   @override

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:greengrocer/src/pages/auth/sign_in_screen.dart';
 import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 
 import 'package:greengrocer/src/config/app_data.dart' as appData;
@@ -11,6 +13,9 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+  //
+  final _fireBaseAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +27,9 @@ class _ProfileTabState extends State<ProfileTab> {
         backgroundColor: Colors.green,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              logout();
+            },
             icon: const Icon(Icons.logout, color: Colors.white),
           ),
         ],
@@ -85,6 +92,18 @@ class _ProfileTabState extends State<ProfileTab> {
         ],
       ),
     );
+  }
+
+  //metodo para sair do app
+  logout() async {
+    await _fireBaseAuth.signOut().then(
+          (user) => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SignInScreen(),
+            ),
+          ),
+        );
   }
 
   //dialog para atualizar a senha
@@ -171,7 +190,6 @@ class _ProfileTabState extends State<ProfileTab> {
                   icon: const Icon(Icons.close),
                 ),
               ),
-
             ],
           ),
         );
