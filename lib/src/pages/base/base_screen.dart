@@ -20,6 +20,8 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+
+      //visualização paginada
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
@@ -28,7 +30,6 @@ class _BaseScreenState extends State<BaseScreen> {
           CartTab(),
           OrdersTab(),
           ProfileTab(),
-
         ],
       ),
 
@@ -37,14 +38,10 @@ class _BaseScreenState extends State<BaseScreen> {
         onTap: (index){
           setState(() {
             currentIndex = index;
-            //pageController.jumpToPage(index);
-            pageController.animateToPage(
-              index,
-              duration: const Duration(milliseconds: 700),
-              curve: Curves.bounceInOut,
-            );
+            pageController.jumpToPage(index);
           });
         },
+
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.green,
         selectedItemColor: Colors.white,

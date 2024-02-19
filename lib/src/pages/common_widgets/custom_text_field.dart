@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 class CustomTextField extends StatefulWidget {
   final IconData icon;
   final String label;
+  final TextEditingController? controller; //login firebase
 
   //variavel para apresentar o botao de visibilidade
   // do suffixIcon no campo de senha
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.inputFormatters,
     this.initialValue,
     this.readOnly = false,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,6 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-
   //variavel para deixar o texto oculto nas senhas
   bool isObscure = false;
 
@@ -48,6 +49,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        controller: widget.controller,
         readOnly: widget.readOnly, //campo apenas de leitura na profile_tab
         initialValue: widget.initialValue, //valor inicial do campo de texto
         inputFormatters: widget.inputFormatters,
@@ -56,14 +58,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
           prefixIcon: Icon(widget.icon),
 
           //se o isSecret for true mostra o botão senao retorna null
-          suffixIcon: widget.isSecret ? IconButton(
-            onPressed: () {
-              setState(() {
-                isObscure = !isObscure;
-              });
-            },
-            icon: Icon( isObscure ? Icons.visibility : Icons.visibility_off),
-          ) : null,
+          suffixIcon: widget.isSecret
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isObscure = !isObscure;
+                    });
+                  },
+                  icon:
+                      Icon(isObscure ? Icons.visibility : Icons.visibility_off),
+                )
+              : null,
 
           labelText: widget.label,
           isDense: true,

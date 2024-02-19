@@ -41,7 +41,7 @@ class _ItemTileState extends State<ItemTile> {
   @override
   Widget build(BuildContext context) {
 
-    return Stack(
+    return Stack( //para posicionar o botão do carrinho
       children: [
 
         //CONTEUDO DO TILE

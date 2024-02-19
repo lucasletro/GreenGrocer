@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "256486978737",
+    "project_id": "quitanda-39f03",
+    "storage_bucket": "quitanda-39f03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256486978737:android:5351bab5d50c65efa1de90",
+        "android_client_info": {
+          "package_name": "com.example.greengrocer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4M62zMH6F1MArVOhTwpCxUSqUxuvLRvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

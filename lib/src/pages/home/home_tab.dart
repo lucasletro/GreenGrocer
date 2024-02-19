@@ -25,11 +25,14 @@ class _HomeTabState extends State<HomeTab> {
         elevation: 0,
         title: const AppNameWidget(),
 
+        //icone do carrinho de compras
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 10, right: 20),
             child: GestureDetector(
               onTap: () {},
+
+              //icone de quantidade do carrinho
               child: const Badge(
                 backgroundColor: Colors.red,
                 label: Text(
@@ -51,6 +54,7 @@ class _HomeTabState extends State<HomeTab> {
           ),
         ],
       ),
+
 
       body: Column(
         children: [
@@ -87,7 +91,7 @@ class _HomeTabState extends State<HomeTab> {
             ),
           ),
 
-          //CATEGORIAS
+          //SEÇÃO DE CATEGORIAS
           Container(
             padding: const EdgeInsets.only(left: 25),
             height: 40,

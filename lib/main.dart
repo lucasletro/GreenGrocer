@@ -1,8 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:greengrocer/firebase_options.dart';
 import 'package:greengrocer/src/pages/splash/splash_screen.dart';
+import '';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); //firebase
+  await Firebase.initializeApp(
+    //firebase
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-void main() {
   runApp(const MyApp());
 }
 
@@ -20,7 +28,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home:
+          const SplashScreen(), //parei em 4:51 ja instalei pluggin firebase core e ja fiz firebase config
     );
   }
 }
