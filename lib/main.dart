@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/firebase_options.dart';
 import 'package:greengrocer/src/pages/splash/splash_screen.dart';
-import '';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //firebase

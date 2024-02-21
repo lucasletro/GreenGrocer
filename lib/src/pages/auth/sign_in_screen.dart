@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/pages/auth/sign_up_screen.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
@@ -31,6 +30,7 @@ class _SignInScreenState extends State<SignInScreen> {
         password: _passwordController.text,
       );
       if (userCredential != null) {
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const BaseScreen()),
@@ -39,6 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
     } on FirebaseAuthException catch (e) {
       //caso de algum erro
       if (e.code == 'user-not-found') {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Usuario não encontrado"),
@@ -46,6 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         );
       } else if (e.code == 'wrong-password') {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Sua senha está errada"),
@@ -145,10 +147,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             backgroundColor: Colors.green),
                         onPressed: () {
                           login();
-                          /*Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(builder: (c) {
-                            return const BaseScreen();
-                          }));*/
                         },
                         child: const Text(
                           "Entrar",
@@ -207,7 +205,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(builder: (c) {
-                              return SignUpScreen();
+                              return const SignUpScreen();
                             }),
                           );
                         },
