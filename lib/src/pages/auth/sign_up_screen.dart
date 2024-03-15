@@ -153,7 +153,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  //then: se der certo e o catch error se der errado
   cadastrar() async {
     try {
       UserCredential userCredential =
@@ -190,5 +189,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     }
   }
-  //
 }

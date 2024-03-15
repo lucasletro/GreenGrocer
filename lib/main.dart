@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home:
-          const SplashScreen(), //parei em 4:51 ja instalei pluggin firebase core e ja fiz firebase config
+          const SplashScreen(), 
     );
   }
 }

@@ -15,6 +15,20 @@ class ProfileTab extends StatefulWidget {
 class _ProfileTabState extends State<ProfileTab> {
   //
   final _fireBaseAuth = FirebaseAuth.instance;
+  String nome = "";
+  String email = "";
+  String celular = "";
+  String cpf = "";
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //pegarUsuario();
+    _fetchUser();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +50,22 @@ class _ProfileTabState extends State<ProfileTab> {
       ),
 
       //FORMULARIO
-      body: ListView(
+      body: _isLoading? const Center(child: CircularProgressIndicator(),) : ListView(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
         children: [
           //email
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.email,
+            initialValue: email, /////////
             icon: Icons.email,
             label: "Email",
           ),
 
           //nome
-          CustomTextField(
+           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.name,
+            initialValue: nome, ///////////
             icon: Icons.person,
             label: "Nome",
           ),
@@ -59,7 +73,7 @@ class _ProfileTabState extends State<ProfileTab> {
           //celular
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.phone,
+            initialValue: celular,
             icon: Icons.phone,
             label: "Celular",
           ),
@@ -67,7 +81,7 @@ class _ProfileTabState extends State<ProfileTab> {
           //CPF
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.cpf,
+            initialValue: cpf,
             icon: Icons.file_copy,
             label: "CPF",
             isSecret: true,
@@ -93,6 +107,35 @@ class _ProfileTabState extends State<ProfileTab> {
       ),
     );
   }
+
+  Future<void> _fetchUser() async {
+    User? user = _fireBaseAuth.currentUser;
+    if (user != null) {
+      setState(() {
+        nome = user.displayName ?? "";
+        email = user.email ?? "";
+        celular = user.phoneNumber ?? "";
+        //cpf = user.
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  // pegarUsuario() async {
+  //   User? usuario = await _fireBaseAuth.currentUser;
+  //
+  //   if(usuario != null){
+  //     setState(() {
+  //       nome = usuario.displayName!;
+  //       email = usuario.email!;
+  //     });
+  //   }
+  //
+  // }
 
   //metodo para sair do app
   logout() async {
